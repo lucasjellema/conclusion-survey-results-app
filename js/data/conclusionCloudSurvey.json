@@ -1,0 +1,528 @@
+{
+  "title": "Conclusion (Public) Cloud Survey",
+  "description": "Deze survey is om een beeld samen te stellen van de huidige cloud-leveranciers en diensten van onze klanten en om te inventariseren welke interesse er bestaat in en verkenningen worden gedaan naar alternatieven voor US Hyperscalers.",
+  "steps": [
+    {
+      "id": "step1",
+      "title": "Cloudgebruik",
+      "description": "Basisinformatie over het cloudgebruik binnen jouw organisatie en bij jouw klanten",
+      "backgroundImage": {
+        "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
+        "opacity": "light",
+        "position": "center"
+      },
+      "questions": [
+  {
+          "id": "cloudUsage",
+          "type": "checkbox",
+          "title": "Gebruik van Cloud Services",
+          "description": "Welke type cloud services wordt door jouw klanten en/of door jouw eigen organisatie gebruikt?",
+          "required": true,
+          "options": [
+            {
+              "value": "iaas",
+              "label": "Infrastructure as a Service (IaaS)"
+            },
+            {
+              "value": "caas",
+              "label": "Container Service - zoals OpenShift, AKS of EKS"
+            },
+            {
+              "value": "paas",
+              "label": "Platform as a Service (PaaS)"
+            },
+            {
+              "value": "faas",
+              "label": "Function as a Service (FaaS) / Serverless Platform"
+            },
+            {
+              "value": "maas",
+              "label": "Model as a Service (MaaS) (LLM, AI/ML, ...)" 
+            },
+            {
+              "value": "saas",
+              "label": "Software as a Service (SaaS) - zoals Salesforce, M365, Jira, Service Now, ChatGPT"
+            },
+            {
+              "value": "private",
+              "label": "Private Cloud"
+            },
+            {
+              "value": "pubprem",
+              "label": "Public Cloud on Prem - bijvoorbeeld Azure Local, AWS Outposts"
+            },
+            {
+              "value": "hybrid",
+              "label": "Hybrid Cloud - zowel een public als een private/on prem cloud"
+            },
+            {
+              "value": "none",
+              "label": "Geen cloud services in gebruik"
+            }
+          ]
+        },
+        {
+          "id": "cloud_gebruik_details",
+          "type": "longText",
+          "title": "Toelichting op gebruik van Cloud Services",
+          "description": "Kan je meer vertellen over het huidige gebruik van clouddiensten en de overwegingen daarbij?"
+        }    ,    {
+          "id": "cloud_overwegingen",
+          "type": "rankOptions",
+          "title": "Overwegingen bij cloud keuzes",
+          "description": "Zet deze overwegingen op volgorde van belangrijkheid bij de keuze van een cloud provider (zoals je die inschat voor jouw klanten).",
+          "rankOptions": {
+            "showScale": true,
+            "scaleLabels": {
+              "high": "Hoog",
+              "low": "Laag"
+            },
+            "options": [
+              {
+                "value": "esg",
+                "label": "ESG (Environmental, Social, Governance) factors"
+              },
+              {
+                "value": "security",
+                "label": "Security,compliance, certificeringen"
+              },
+              {
+                "value": "locatie",
+                "label": "Datalocatie"
+              },
+              {
+                "value": "autonomy",
+                "label": "Onafhankelijkheid US / soevereiniteit"
+              },
+              {
+                "value": "maturity",
+                "label": "Volwassen / Bewezen"
+              },
+              {
+                "value": "portfolio",
+                "label": "Dienstenaanbod"
+              },
+              {
+                "value": "kosten",
+                "label": "Financiële overwegingen"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "step2",
+      "title": "Public Cloud gebruik",
+      "description": "Huidig gebruik van public cloud diensten en providers - van buiten de EU",
+      "questions": [
+        
+        {
+          "id": "saas_details",
+          "type": "radio",
+          "title": "Huidige betekenis van public cloud",
+          "description": "Hoe verstrekkend is bij jouw klanten de toepassing van public cloud?",
+          "linkedQuestionId": "cloudUsage",
+      
+          "options": [
+            {
+              "value": "geen",
+              "label": "Geen "
+            },
+            {
+              "value": "minimal",
+              "label": "Minimaal - Een zeer beperkt aantal toepassingen"
+            },
+            {
+              "value": "moderate",
+              "label": "Gemiddeld - Enkele applicaties/systemen"
+            },
+            {
+              "value": "extensive",
+              "label": "Extensief - De meeste zakelijke toepassingen"
+            },
+            {
+              "value": "complete",
+              "label": "Volledig/Cloud First - alles gaat in principe naar de cloud"
+            }
+          ]
+        },
+        {
+          "id": "cloudProviders",
+          "type": "matrix2d",
+          "title": "Gebruik van niet-EU cloud providers ",
+          "description": "Geef graag aan in welke mate jouw klanten van onderstaande leveranciers gebruikmaken.",
+          "matrix": {
+            "rows": [
+              {
+                "id": "aws",
+                "label": "Amazon Web Services"
+              },
+              {
+                "id": "azure",
+                "label": "Microsoft Azure"
+              },
+              {
+                "id": "gcp",
+                "label": "Google Cloud Platform"
+              },
+              {
+                "id": "ibm",
+                "label": "IBM Cloud"
+              },
+              {
+                "id": "oracle",
+                "label": "Oracle Cloud Infrastructure"
+              },
+              {
+                "id": "dig",
+                "label": "Digital Ocean"
+              },
+              {
+                "id": "sf",
+                "label": "Salesforce"
+              },
+              {
+                "id": "ali",
+                "label": "Alibaba Cloud"
+              }
+            ],
+            "columns": [
+              {
+                "id": "not_using",
+                "label": "Niet"
+              },
+              {
+                "id": "evaluating",
+                "label": "Evaluatie"
+              },
+              {
+                "id": "limited_use",
+                "label": "Beperkt gebruik"
+              },
+              {
+                "id": "extensive_use",
+                "label": "Uitgebreid gebruik"
+              },
+              {
+                "id": "primary",
+                "label": "Primaire leverancier"
+              }
+            ],
+            "allowMultiple": true
+          }
+        },
+        {
+          "id": "overige_cloud_providers",
+          "type": "longText",
+          "title": "Andere leveranciers? Toelichting",
+          "description": "Zijn er nog andere leveranciers die een rol spelen? Valt er verder iets te zeggen over wat je bij klanten tegenkomt qua cloud-voorkeur en -toepassing?"
+        },
+        {
+          "id": "public_cloud_future",
+          "type": "multiValueSlider",
+          "title": "Toekomstige inzet van public cloud provider",
+          "description": "Versleep elke provider om aan te geven waar ze passen op de schaal. De linkerkant geeft een afnemend belang aan, de rechterkant een sterke groei.",
+          "multiValueSlider": {
+            "mode": "discrete",
+            "options": [
+              {
+                "id": "aws",
+                "label": "Amazon Web Services",
+                "letter": "A",
+                "shape": "circle",
+                "defaultPosition": 50,
+                "color": "#FF9900"
+              },
+              {
+                "id": "azure",
+                "label": "Microsoft Azure",
+                "letter": "M",
+                "shape": "rectangle",
+                "defaultPosition": 50,
+                "color": "#0078D4"
+              },
+              {
+                "id": "gcp",
+                "label": "Google Cloud Platform",
+                "letter": "G",
+                "shape": "triangle",
+                "defaultPosition": 50,
+                "color": "#4285F4"
+              },
+              {
+                "id": "alibaba",
+                "label": "Alibaba Cloud",
+                "letter": "L",
+                "shape": "circle",
+                "defaultPosition": 50,
+                "color": "#FF6A00"
+              },
+              {
+                "id": "ibm",
+                "label": "IBM Cloud",
+                "letter": "I",
+                "shape": "circle",
+                "defaultPosition": 50,
+                "color": "#006699"
+              },
+              {
+                "id": "oracle",
+                "label": "Oracle Cloud Infrastructure",
+                "letter": "O",
+                "shape": "rectangle",
+                "defaultPosition": 50,
+                "color": "#F80000"
+              },
+              {
+                "id": "dig",
+                "label": "Digital Ocean",
+                "letter": "D",
+                "shape": "rectangle",
+                "defaultPosition": 50,
+                "color": "#0080FF"
+              },
+              {
+                "id": "sf",
+                "label": "Salesforce",
+                "letter": "S",
+                "shape": "circle",
+                "defaultPosition": 50,
+                "color": "#00A1E0"
+              }
+            ],
+            "zones": [
+              {
+                "id": "no",
+                "label": "Geen",
+                "color": "#f8d7da",
+                "start": 0,
+                "end": 25
+              },
+              {
+                "id": "medium-low",
+                "label": "Afnemend",
+                "color": "#fff3cd",
+                "start": 25,
+                "end": 45
+              },
+              {
+                "id": "equal",
+                "label": "Gelijkblijvend",
+                "color": "#d1e7dd",
+                "start": 45,
+                "end": 65
+              },
+              {
+                "id": "high",
+                "label": "Toenemend",
+                "color": "#cfe2ff",
+                "start": 65,
+                "end": 80
+              },
+              {
+                "id": "veryhigh",
+                "label": "Sterk Toenemend",
+                "color": "#8284cc",
+                "start": 80,
+                "end": 100
+              }
+            ],
+            "showLabels": true,
+            "showLegend": true
+          }
+        },
+        {
+          "id": "other_public_cloud_vendors",
+          "type": "longText",
+          "title": "Overige non-eu public cloud vendors",
+          "description": "Zijn er andere belangrijke non-EU public cloud vendors die een rol spelen bij jouw klanten? Wat zijn de belangrijkste overwegingen om deze te gebruiken? Zijn er specifieke use cases of toepassingen waarvoor deze vendors worden gekozen?"
+        }
+      ]
+    },
+    {
+      "id": "step3",
+      "title": "Europese Cloud Providers",
+      "description": "Kijken jouw klanten naar Europese leveranciers?",
+      "backgroundImage": {
+        "url": "https://images.unsplash.com/photo-1608817576203-3c27ed168bd2?q=80&w=1592&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "opacity": "medium",
+        "position": "bottom"
+      },
+      "questions": [
+        {
+          "id": "visie_eu_cloud_providers",
+          "type": "longText",
+          "title": "Visie op Europese (soevereine) Cloud Providers",
+          "description": "Hebben jouw klanten (en jouw bedrijf) een visie over soevereine cloud? Wat hoor je over dit onderwerp van klanten - houdt het ze bezig? Zo ja, op welke manier en waarom?"
+        },
+        
+        {
+          "id": "euCloudProviders",
+          "type": "matrix2d",
+          "title": "Europese Cloud Providers",
+          "description": "Welke van van de volgende Europese cloudproviders staan op de radar en op welke manier",
+          "matrix": {
+            "rows": [
+              {
+                "id": "exo",
+                "label": "Exoscale",
+                "description": "Exoscale is a cloud computing platform from Switzerland with several server locations within Europe. It offers virtual servers, object storage (S3 compatible), managed kubernetes, managed databases, DNS and CDN. The managed database service offers Apache Kafka and Redis in addition to the commonly offered MySQL and PostgreSQL. The virtual servers are available in different strengths and specializations such as CPU, memory, storage optimized. In addition, own GPU instances are offered, which can be used for GPU intensive computations."
+              },
+              {
+                "id": "elx",
+                "label": "Elastx",
+                "description": "Elastx is a cloud computing platform from Sweden. They use OpenStack and offer managed Kubernetes, object storage and a web application firewall. They operate three accessibility zones (AZ) in separate data centers in Sweden 20 km away from each other to host high availability applications."
+              },
+              {
+                "id": "stt",
+                "label": "StackIT",
+                "description": "STACKIT is a cloud computing platform by the German retail group Schwarz Group. They offers managed services like object storage, kubernetes, block storage and databases. Besides the often offered managed services MySQL and Postgres, STACKIT also offers managed Redis, MongoDB, RabbitMQ and ELK (Elasticsearch, Logstash and Kibana). STACKIT currently operates two data centers, one in Germany and one in Austria."
+              },
+              {
+                "id": "otc",
+                "label": "Open Telekom Cloud",
+                "description": "Open Telekom Cloud (Germany) is a cloud computing platform by the German telecommunications company Deutsche Telekom AG. The cloud provider is based on OpenStack which is open source and can reduce the vendor lock-in of cloud providers."
+              },
+              {
+                "id": "ovh",
+                "label": "OVHcloud",
+                "description": "OVHcloud is a public cloud provider from France with a wide range of services. It offers the classic services such as virtual servers for different applications, object storage, managed databases and managed Kubernetes."
+              },
+              {
+                "id": "scw",
+                "label": "Scaleway",
+                "description": "Scaleway (France) is a cloud provider with a variety of services. Besides the public cloud called Scaleway Elements, they also offer dedicated servers and even renting racks in data centers."
+              },
+              {
+                "id": "htz",
+                "label": "Hetzner",
+                "description": "Hetzner is a European cloud provider known for its high-performance cloud servers and competitive pricing."
+              },
+              {
+                "id": "aru",
+                "label": "ArubaCloud",
+                "description": "Aruba Cloud is a VPS provider from Italy with many data centers in Europe. It offers virtual servers, managed databases, domains and DNS."
+              },
+              {
+                "id": "upc",
+                "label": "UpCloud",
+                "description": "UpCloud (Finland) is a cloud computing platform with servers around the world. They offer typical services like virtual servers, VPC, managed databases, managed Kubernetes and object storage. The block storage can be upgraded to achieve higher read and write speeds (IOPS), which can be useful for databases or other memory-intensive applications."
+              },
+              {
+                "id": "gsc",
+                "label": "GridScale",
+                "description": "GridScale (part of OVHcloud)  is a cloud computing platform from Germany. Like most general cloud providers, gridscale provides virtual servers, managed Kubernetes, managed databases, load balancers and object storage. They offer a big variety of database types like Postgres, Microsoft SQL, MariaDB, MySQL and Redis as a cache and as a storage. They also provide managed NFS (network file storage) servers, that can be helpful to share data between Kubernetes nodes. gridscale offers servers in Germany, Austria, Switzerland, and the Netherlands."
+              },
+              {
+                "id": "del",
+                "label": "Delos Cloud (SAP)",
+                "description": "Delos Cloud (SAP, Germany) for Public Sector"
+              },
+              {
+                "id": "ios",
+                "label": "Ionos",
+                "description": "IONOS is a German cloud computing platform. They offer typical services like virtual servers, VPC, managed databases and object storage."
+              },
+              {
+                "id": "fug",
+                "label": "FugaCloud",
+                "description": "Fuga Cloud is a cloud platform from the Netherlands. It offers virtual servers in many different sizes and also GPU and memory optimized instances. It is possible to attach block storage to the instances. Fuga Cloud also offers object storage (more about Fuga Cloud Object Store here), load balancers, managed kubernetes and DNS."
+              },
+              {
+                "id": "neb",
+                "label": "Nebul",
+                "description": "Dutch, specialized in NVIDIA based services for AI applications; also offers container platform."
+              }
+            ],
+            "columns": [
+              {
+                "id": "interesse",
+                "label": "Interesse",
+                "description": "Interesse in de diensten van deze provider"
+              },
+              {
+                "id": "bekeken",
+                "label": "Bekeken",
+                "description": "Onderzocht, misschien uitgeprobeerd"
+              },
+              {
+                "id": "poc",
+                "label": "Proof of Concept"
+              },
+              {
+                "id": "pilot",
+                "label": "Pilot"
+              },
+              {
+                "id": "intern",
+                "label": "Intern in gebruik"
+              },
+              {
+                "id": "klant",
+                "label": "Live bij klant"
+              }
+            ],
+            "allowMultiple": true
+          }
+        },
+        {
+          "id": "toelichting_eu_cloud_providers",
+          "type": "longText",
+          "title": "Toelichting op ervaring Europese Cloud Providers",
+          "description": "Kan je meer vertellen over alle EU cloud providers waarmee je Pilot hebt gedaan, intern live bent of voor een klant aan de slag bent? Wat is de toepassing, wat zijn je ervaringen?"
+        }
+      ]
+    },
+    {
+      "id": "step4",
+      "title": "Europese Cloud en Conclusion Ecosysteem",
+      "description": "Hoe gaan we ons als Conclusion richten op de markt rond de soevereine, Europese Cloud?",
+      "questions": [
+        {
+          "id": "ecosysteem",
+          "type": "checkbox",
+          "title": "Cloud Ecosysteem-diensten",
+          "description": "Wat wil je graag van het ecosysteem kunnen krijgen rond cloud?",
+          "required": true,
+          "options": [
+            {
+              "value": "diensten",
+              "label": "Diensten rond inrichting en beheer"
+            },
+            {
+              "value": "expertise",
+              "label": "Kennis, Ervaring, Expertise, Tips"
+            },
+            {
+              "value": "managed",
+              "label": "Managed omgeving (landing zone+)"
+            },
+            {
+              "value": "visie",
+              "label": "Visie op cloud"
+            },
+            {
+              "value": "marketing",
+              "label": "Zichtbaarheid richting markt"
+            },
+            {
+              "value": "sandbox",
+              "label": "Uitprobeeromgeving (sandbox)"
+            },
+            {
+              "value": "other",
+              "label": "Other"
+            }
+          ],
+          "allowComment": true
+        },
+        {
+          "id": "toelichting_next_steps",
+          "type": "longText",
+          "title": "Toelichting op volgende stappen",
+          "description": "Hoe kijk je aan tegen het thema cloud, public cloud en soevereine cloud? Welke rol wil jij / jouw bedrijf daar in spelen? Wil je diensten aanbieden specifiek rond soevereine cloud - of wil zoals migratie, landschapsbrede voorzieningen (federated identity management, data synchronization | backup, cross cloud event hub, observability, ...)? Wil je onderzoek doen, je profileren, ... Op welke manier denk je dat we gezamenlijk verder kunnen? Geef graag je visie en ambities en verwachtingen."
+        }
+      ]
+    } ]
+}
