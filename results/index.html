@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/wizard-results.css">
+    <link rel="stylesheet" href="css/chart-fixes.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/slider-visualizer.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <!-- Optional: Include chartjs-plugin-datalabels for better chart labels -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">Survey</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="results-container">
+        <div class="results-header">
+            <h1>Survey Results</h1>
+            <div class="results-meta">
+                <div class="responses-count">
+                    <span id="total-responses">0</span> total responses
+                </div>
+                <div class="last-response">
+                    Last response: <span id="last-response-date">-</span>
+                </div>
+                <button id="open-result-details" class="btn primary">View All Responses</button>
+                <div class="admin-controls" id="admin-panel" style="display: none;">
+                    <!-- Admin controls will be added here for authenticated admin users -->
+                </div>
+            </div>
+        </div>
+
+        <section class="results-filters" aria-labelledby="filters-heading" style="display: none;">
+            <h3 id="filters-heading">Filters</h3>
+            <div class="filter-controls">
+                <div class="filter-row">
+                    <div class="filter-item">
+                        <label for="date-range">Date Range</label>
+                        <select id="date-range">
+                            <option value="all">All Time</option>
+                            <option value="today">Today</option>
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
+                            <option value="quarter">Last Quarter</option>
+                        </select>
+                    </div>
+                    <!-- Dynamic filter containers for industry and organization size -->
+                    <div class="filter-item" id="industry-filter-container">
+                        <!-- Industry filter will be dynamically populated -->
+                        <p class="loading-placeholder">Loading industry filter...</p>
+                    </div>
+                    <div class="filter-item" id="org-size-filter-container">
+                        <!-- Org size filter will be dynamically populated -->
+                        <p class="loading-placeholder">Loading organization size filter...</p>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button id="apply-filters" class="btn primary">Apply Filters</button>
+                    <button id="reset-filters" class="btn secondary">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="results-overview" style="display: none;">
+            <h2>Overview</h2>
+            <div class="overview-stats">
+                <!-- Overview statistics will be populated dynamically -->
+            </div>
+        </div>
+
+        <div class="results-sections" id="results-container">
+            <!-- Question results will be dynamically inserted here -->
+            <div class="loading-indicator">
+                <p>Loading survey results...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Conclusion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/resultsDashboard.js"></script>
+
+    <!-- Response Details Modal -->
+    <div id="response-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>All Responses</h2>
+            <div class="modal-body">
+                <ul id="response-list">
+                    <!-- Response items will be dynamically inserted here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

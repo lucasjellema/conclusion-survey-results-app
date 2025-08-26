@@ -1,0 +1,52 @@
+/**
+ * slider-visualizer.css
+ * Styles for slider visualization components
+ */
+
+/* Statistics table container */
+.slider-stats-container {
+    margin-top: 30px;
+    overflow-x: auto;
+    clear: both; /* Prevent overlap with previous elements */
+    position: relative; /* Create a new stacking context */
+    z-index: 1; /* Ensure proper stacking */
+}
+
+/* Statistics table */
+.slider-stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.slider-stats-table th,
+.slider-stats-table td {
+    padding: 8px 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.slider-stats-table th {
+    background-color: #f5f7fa;
+    font-weight: 500;
+}
+
+.slider-stats-table td:first-child,
+.slider-stats-table th:first-child {
+    text-align: left;
+}
+
+/* Chart container - prevent overlap with other elements */
+.visualization-container canvas {
+    display: block;
+    position: relative;
+}
+
+/* Ensure clean separation between visualizations */
+.question-result {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    clear: both;
+    position: relative;
+}

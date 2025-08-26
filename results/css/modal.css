@@ -1,0 +1,330 @@
+/**
+ * modal.css
+ * Styles for modal components in the survey results dashboard
+ */
+
+/* Modal Overlay */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    position: relative; /* For positioning the close button */
+    border-radius: 8px;
+    max-height: 90vh; /* Limit height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Modal Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: #333;
+}
+
+.modal-close:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 134, 232, 0.4);
+}
+
+/* Filter Section */
+.filter-section {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background-color: #f8f9fa;
+}
+
+.filter-input-container {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 8px 12px 8px 36px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.filter-input:focus {
+    border-color: #4a86e8;
+    box-shadow: 0 0 0 2px rgba(74, 134, 232, 0.2);
+    outline: none;
+}
+
+.filter-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+}
+
+.filter-stats {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+#filter-count {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Responses Container */
+.response-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.response-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.response-item .response-header {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.response-item .response-meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.response-item .response-properties h4,
+.response-item .survey-answers h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 1em;
+}
+
+.response-item .response-properties ul,
+.response-item .survey-answers ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+}
+
+.response-item .response-properties li,
+.response-item .survey-answers li {
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.clickable-stat {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.clickable-stat:hover {
+    background-color: #e0e0e0; /* Lighter shade on hover */
+}
+
+.response-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.response-item {
+    display: flex;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.2s;
+}
+
+.response-item:hover {
+    border-color: #4a86e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.response-number {
+    font-weight: bold;
+    color: #666;
+    min-width: 40px;
+    margin-right: 12px;
+}
+
+.response-text {
+    flex: 1;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Empty State */
+.empty-state {
+    padding: 40px 0;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+/* Pagination */
+.pagination-container {
+    padding: 16px 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f8f9fa;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pagination-button {
+    min-width: 36px;
+    height: 36px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.pagination-button:hover:not(:disabled) {
+    border-color: #4a86e8;
+    background-color: rgba(74, 134, 232, 0.1);
+}
+
+.pagination-button.active {
+    background-color: #4a86e8;
+    border-color: #4a86e8;
+    color: #fff;
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 134, 232, 0.4);
+}
+
+.pagination-ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    color: #666;
+    padding: 0 4px;
+}
+
+.page-info {
+    margin-left: auto;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Responsiveness */
+@media (max-width: 576px) {
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-input-container {
+        max-width: none;
+    }
+    
+    .pagination {
+        justify-content: center;
+    }
+    
+    .page-info {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        margin-top: 8px;
+    }
+}

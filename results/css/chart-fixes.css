@@ -1,0 +1,90 @@
+/* chart-fixes.css */
+/* Styles to fix chart visualization issues including legend positioning */
+
+/* Increase container height to accommodate legends */
+.visualization-container {
+    min-height: 450px !important;
+    position: relative;
+    padding-bottom: 80px !important; /* Add padding at the bottom for legends */
+}
+
+/* Ensure charts have proper space for legends */
+.visualization-container canvas {
+    max-height: 350px;
+}
+
+/* Style for chart legends */
+.chart-legend {
+    margin-top: 30px;
+    position: relative;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    padding: 10px 5px;
+}
+
+.chart-legend ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.chart-legend li {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    white-space: nowrap;
+    padding: 5px 8px;
+    background-color: rgba(245, 247, 250, 0.8);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.chart-legend .legend-color {
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Fix for chartjs-generated legends */
+#chartjs-tooltip {
+    z-index: 999 !important;
+}
+
+.chartjs-legend-li {
+    white-space: nowrap;
+}
+
+/* Add spacer for legends in radar and other charts */
+.legend-spacer {
+    height: 40px;
+    width: 100%;
+    clear: both;
+}
+
+/* Fix heatmap visualization height */
+.heatmap-container {
+    overflow-x: auto;
+    max-height: 500px;
+    margin-bottom: 40px;
+}
+
+/* Improve responsive behavior for small screens */
+@media (max-width: 768px) {
+    .visualization-container {
+        min-height: 380px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    .chart-legend ul {
+        justify-content: flex-start;
+    }
+    
+    .chart-legend {
+        margin-top: 20px;
+    }
+}

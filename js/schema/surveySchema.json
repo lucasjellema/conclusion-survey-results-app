@@ -1,0 +1,427 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Survey Schema",
+  "description": "Schema for defining dynamic survey steps and questions",
+  "type": "object",
+  "required": ["title", "description", "steps"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the survey"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the survey"
+    },
+    "steps": {
+      "type": "array",
+      "description": "Array of survey steps",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "questions"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the step"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the step"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the step"
+          },
+          "questions": {
+            "type": "array",
+            "description": "Array of questions in this step",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "type", "title"],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier for the question"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["shortText", "longText", "radio", "checkbox", "likert", "rangeSlider", "matrix2d", "multiValueSlider", "radar"],
+                  "description": "Type of question"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title of the question"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the question"
+                },
+                "allowComment": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether to allow comments for this question"
+                },
+                "required": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "Whether this question is required to be answered"
+                },
+                "conditions": {
+                  "type": "object",
+                  "description": "Conditions that must be met for this question to be displayed",
+                  "properties": {
+                    "operator": {
+                      "type": "string",
+                      "enum": ["and", "or"],
+                      "default": "and",
+                      "description": "Logical operator to combine multiple conditions"
+                    },
+                    "rules": {
+                      "type": "array",
+                      "description": "Array of condition rules that must be satisfied",
+                      "items": {
+                        "type": "object",
+                        "required": ["questionId", "type"],
+                        "properties": {
+                          "questionId": {
+                            "type": "string",
+                            "description": "ID of the question this condition depends on"
+                          },
+                          "type": {
+                            "type": "string",
+                            "enum": ["answered", "equals", "notEquals", "contains", "greaterThan", "lessThan", "topRanked"],
+                            "description": "Type of condition check to perform"
+                          },
+                          "value": {
+                            "description": "Value to compare with the answer (required for equals, notEquals, contains)"
+                          },
+                          "threshold": {
+                            "type": "number",
+                            "description": "Threshold value for greaterThan and lessThan comparisons"
+                          },
+                          "optionId": {
+                            "type": "string",
+                            "description": "Option ID for topRanked comparison (for multiValueSlider)"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+
+                "options": {
+                  "type": "array",
+                  "description": "Options for radio, checkbox, or likert questions",
+                  "items": {
+                    "type": "object",
+                    "required": ["value", "label"],
+                    "properties": {
+                      "value": {
+                        "type": "string",
+                        "description": "Value of the option; when value is other, the option is special and a text input is provided for the user to type in their other value"
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "Display label for the option"
+                      }
+                    }
+                  }
+                },
+                "likertScale": {
+                  "type": "object",
+                  "description": "Scale definition for Likert questions",
+                  "properties": {
+                    "min": {
+                      "type": "integer",
+                      "default": 1,
+                      "description": "Minimum value of the scale"
+                    },
+                    "max": {
+                      "type": "integer",
+                      "default": 5,
+                      "description": "Maximum value of the scale"
+                    },
+                    "labels": {
+                      "type": "object",
+                      "description": "Labels for scale points",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "rangeSlider": {
+                  "type": "object",
+                  "description": "Configuration for range slider questions",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "description": "Minimum value of the slider"
+                    },
+                    "max": {
+                      "type": "number",
+                      "description": "Maximum value of the slider"
+                    },
+                    "step": {
+                      "type": "number",
+                      "default": 1,
+                      "description": "Step value for the slider"
+                    },
+                    "labels": {
+                      "type": "object",
+                      "description": "Labels for significant points on the slider",
+                      "additionalProperties": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "matrix": {
+                  "type": "object",
+                  "description": "Configuration for 2D matrix questions",
+                  "properties": {
+                    "rows": {
+                      "type": "array",
+                      "description": "Row labels for the matrix",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Row identifier"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Row label"
+                          }
+                        }
+                      }
+                    },
+                    "columns": {
+                      "type": "array",
+                      "description": "Column labels for the matrix",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Column identifier"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Column label"
+                          }
+                        }
+                      }
+                    },
+                    "allowMultiple": {
+                      "type": "boolean",
+                      "default": false,
+                      "description": "Whether multiple cells can be selected"
+                    }
+                  }
+                },
+                "multiValueSlider": {
+                  "type": "object",
+                  "description": "Configuration for multi-value slider questions",
+                  "properties": {
+                    "options": {
+                      "type": "array",
+                      "description": "Options to position on the slider",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": ["id", "label", "letter"],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the option"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Display label for the option"
+                          },
+                          "letter": {
+                            "type": "string",
+                            "description": "Capital letter to display inside the option shape",
+                            "pattern": "^[A-Z]$"
+                          },
+                          "shape": {
+                            "type": "string",
+                            "enum": ["circle", "rectangle", "triangle"],
+                            "default": "circle",
+                            "description": "Shape of the option marker"
+                          },
+                          "defaultPosition": {
+                            "type": "number",
+                            "description": "Initial position of the option on the slider (0-100)"
+                          }
+                        }
+                      }
+                    },
+                    "mode": {
+                      "type": "string",
+                      "enum": ["discrete", "continuous"],
+                      "default": "discrete",
+                      "description": "Whether the slider has discrete zones or a continuous range"
+                    },
+                    "min": {
+                      "type": "number",
+                      "default": 0,
+                      "description": "Minimum value of the slider"
+                    },
+                    "max": {
+                      "type": "number",
+                      "default": 100,
+                      "description": "Maximum value of the slider"
+                    },
+                    "zones": {
+                      "type": "array",
+                      "description": "Zones for discrete mode",
+                      "items": {
+                        "type": "object",
+                        "required": ["id", "label", "color", "start", "end"],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the zone"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Label for the zone"
+                          },
+                          "color": {
+                            "type": "string",
+                            "description": "CSS color for the zone"
+                          },
+                          "start": {
+                            "type": "number",
+                            "description": "Start position of the zone (0-100)"
+                          },
+                          "end": {
+                            "type": "number",
+                            "description": "End position of the zone (0-100)"
+                          }
+                        }
+                      }
+                    },
+                    "colorStart": {
+                      "type": "string",
+                      "description": "Starting color for continuous mode gradient"
+                    },
+                    "colorEnd": {
+                      "type": "string",
+                      "description": "Ending color for continuous mode gradient"
+                    },
+                    "showLabels": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Whether to show labels on the slider"
+                    },
+                    "showLegend": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Whether to show the legend mapping letters to options"
+                    }
+                  }
+                },
+                "radar": {
+                  "type": "object",
+                  "description": "Configuration for radar questions",
+                  "properties": {
+                    "options": {
+                      "type": "array",
+                      "description": "Options to position on the radar chart",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": ["id", "label", "letter"],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the option"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Display label for the option"
+                          },
+                          "letter": {
+                            "type": "string",
+                            "description": "Capital letter to display inside the option marker",
+                            "pattern": "^[A-Z]$"
+                          },
+                          "shape": {
+                            "type": "string",
+                            "enum": ["circle", "rectangle", "triangle"],
+                            "default": "circle",
+                            "description": "Shape of the option marker"
+                          },
+                          "defaultPosition": {
+                            "type": "object",
+                            "description": "Initial position of the option on the radar chart",
+                            "properties": {
+                              "angle": {
+                                "type": "number",
+                                "description": "Angle position (0-360 degrees)"
+                              },
+                              "radius": {
+                                "type": "number",
+                                "description": "Radius position (0-100)"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "variable1": {
+                      "type": "object",
+                      "description": "Configuration for the first variable (pie segments)",
+                      "required": ["labels"],
+                      "properties": {
+                        "labels": {
+                          "type": "array",
+                          "description": "Ordered labels for pie segments",
+                          "minItems": 2,
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "variable2": {
+                      "type": "object",
+                      "description": "Configuration for the second variable (rings)",
+                      "required": ["labels"],
+                      "properties": {
+                        "labels": {
+                          "type": "array",
+                          "description": "Ordered labels for rings",
+                          "minItems": 2,
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "showLabels": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Whether to show labels on the radar chart"
+                    },
+                    "showLegend": {
+                      "type": "boolean",
+                      "default": true,
+                      "description": "Whether to show the legend mapping letters to options"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
